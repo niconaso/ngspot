@@ -2,8 +2,8 @@
   "name": "@ngspot/ngx-errors",
   "version": "4.0.3",
   "peerDependencies": {
-    "@angular/core": ">=20 <21",
-    "@angular/forms": ">=20 <21",
+    "@angular/core": ">=20 <22",
+    "@angular/forms": ">=20 <22",
     "rxjs": ">=7"
   },
   "dependencies": {

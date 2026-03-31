@@ -7,12 +7,24 @@ describe(CodeSnippetsComponent.name, () => {
   let fixture: ComponentFixture<CodeSnippetsComponent>;
 
   beforeEach(async () => {
+    TestBed.overrideComponent(CodeSnippetsComponent, {
+      set: {
+        template: '',
+      },
+    });
+
     await TestBed.configureTestingModule({
       imports: [CodeSnippetsComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CodeSnippetsComponent);
     component = fixture.componentInstance;
+    component.header = 'Header';
+    component.snippets = {
+      fileName: 'example.ts',
+      content: 'const x = 1;',
+      language: 'typescript',
+    };
     fixture.detectChanges();
   });
 

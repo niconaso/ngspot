@@ -16,10 +16,10 @@
     "directory": "packages/ng-superclass"
   },
   "peerDependencies": {
-    "@angular/common": ">=15",
-    "@angular/core": ">=15",
-    "@angular/forms": ">=15",
-    "@angular/cdk": ">=15",
+    "@angular/common": ">=15 <22",
+    "@angular/core": ">=15 <22",
+    "@angular/forms": ">=15 <22",
+    "@angular/cdk": ">=15 <22",
     "rxjs": ">=7"
   },
   "dependencies": {

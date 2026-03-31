@@ -1,39 +1,64 @@
-import { RouterEvent } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-
-import { createHostFactory } from '@ngneat/spectator';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReplaySubject } from 'rxjs';
+
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 import { NavigationFocusService } from './navigation-focus';
 import { RoutedTabsComponent } from './routed-tabs.component';
 
 describe(RoutedTabsComponent.name, () => {
-  const eventSubject = new ReplaySubject<RouterEvent>(1);
+  let component: RoutedTabsComponent;
+  let fixture: ComponentFixture<RoutedTabsComponent>;
+  let eventSubject: ReplaySubject<unknown>;
 
-  class NavigationFocusMockService {
-    navigationEndEvents = eventSubject.asObservable();
-  }
+  beforeEach(async () => {
+    eventSubject = new ReplaySubject<unknown>(1);
 
-  const createHost = createHostFactory<RoutedTabsComponent>({
-    component: RoutedTabsComponent,
-    imports: [RouterTestingModule],
-    providers: [
-      { provide: NavigationFocusService, useClass: NavigationFocusMockService },
-    ],
+    await TestBed.configureTestingModule({
+      imports: [RoutedTabsComponent],
+      providers: [
+        {
+          provide: NavigationFocusService,
+          useValue: {
+            navigationEndEvents: eventSubject.asObservable(),
+          },
+        },
+        {
+          provide: GoogleAnalyticsService,
+          useValue: {
+            event: () => undefined,
+          },
+        },
+        {
+          provide: Router,
+          useValue: {
+            createUrlTree: () => ({ toString: () => '/section' }),
+            navigateByUrl: () => Promise.resolve(true),
+          },
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: convertToParamMap({}),
+            },
+            parent: null,
+          },
+        },
+      ],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(RoutedTabsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  function setup<T extends { [key: string]: any }>(hostProps?: T) {
-    const template = `<ngs-routed-tabs></ngs-routed-tabs>`;
-    const spectator = createHost<T>(template, {
-      hostProps,
-    });
-
-    return { spectator };
-  }
+  afterEach(() => {
+    eventSubject.complete();
+  });
 
   it('should create', () => {
-    const { spectator } = setup();
-
-    expect(spectator.component).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });

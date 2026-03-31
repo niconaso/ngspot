@@ -2,14 +2,14 @@
   "name": "@ngspot/view-transition-demo",
   "version": "0.0.0",
   "peerDependencies": {
-    "@angular/common": "20.2.4",
-    "@angular/core": "20.2.4",
-    "@angular/router": "20.2.4",
+    "@angular/common": ">=21 <22",
+    "@angular/core": ">=21 <22",
+    "@angular/router": ">=21 <22",
     "@ngspot/common": "0.0.1",
-    "@angular/material": "20.2.2",
+    "@angular/material": ">=21 <22",
     "@ngspot/view-transition": "0.0.4",
-    "@angular/forms": "20.2.4",
-    "rxjs": "7.8.1"
+    "@angular/forms": ">=21 <22",
+    "rxjs": ">=7 <8"
   },
   "dependencies": {},
   "sideEffects": false

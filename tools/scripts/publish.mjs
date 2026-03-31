@@ -7,13 +7,13 @@
  * You might need to authenticate with NPM before running this script.
  */
 
-import nrwlDevkit from '@nrwl/devkit';
+import nxDevkit from '@nx/devkit';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-const { readCachedProjectGraph } = nrwlDevkit;
+const { readCachedProjectGraph } = nxDevkit;
 
 // Executing publish script: node path/to/publish.mjs --tag {tag}
 // Default "tag" to "latest" to avoid accidental "next" tags.

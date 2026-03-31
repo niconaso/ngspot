@@ -123,5 +123,6 @@
   "defaultProject": "demo",
   "nxCloudAccessToken": "Y2FmYWYyM2MtYTE4YS00M2I4LTk4ZDgtZWQ0ZWRjMzVjYjNifHJlYWQtd3JpdGU=",
   "useInferencePlugins": false,
-  "defaultBase": "main"
+  "defaultBase": "main",
+  "analytics": false
 }
